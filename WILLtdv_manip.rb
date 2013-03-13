@@ -1,10 +1,7 @@
 # TDV Manip#
-# Written by Grey Maixner
+# Written by Gary R. Maixner III - grey.maixner@gmail.com
 # Last Modified on Tuesday, February 5, 2013 at 6:59:40 PM CST
 
-# This software was written to process a Tab Delimited Value metadata file.
-# The file was very specific, so the code may not have any application elsewhere.
-# If you do find a use please let me know at grey.maixner@gmail.com
 
 text = File.open("C:\\Users\\maixner2\\Desktop\\willDiscIngest_prac.txt", "r")
 newText = File.new("C:\\Users\\maixner2\\Desktop\\willDiscNameDateProgram.txt", "w")

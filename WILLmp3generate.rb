@@ -1,6 +1,10 @@
 # WILL MP3 Generator
+# Version 1.0
 # Written by Gary Richard Maixner III
-#
+# Last modified: 4:26 PM Wednesday, March 06, 2013
+
+# This software runs through an Audio SIP and derives an MP3 access file from a 44 kHz WAV file.
+# Requires the ffmpeg software to run.
 
 require 'pathname'
 require 'FileUtils'

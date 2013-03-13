@@ -1,29 +1,30 @@
+#### WILL Verifier ####
+# Version 1.01
+# Written by Gary R. Maixner III
+# Last modified: 4:21 PM Wednesday, March 06, 2013
+
+# Changes in this version
+#  - Refactored the code to make it easier to augment later by creating the comparer function
+
+
+# This software take in two different folders and compares the contents on both. 
+# If the software does not detect a 44KhZ for every 96KhZ file then it will alert the user.
+# Direct the software to the proper directory by changing the string in declareDir, in the RUN CODE Section
+
 require 'pathname'
 require 'FileUtils'
 
-declareDir = 'Z:\packageTestArea\WILL_UIUC_Transfers'
-newFold = Pathname.new(declareDir).children.select { |c| c.directory? }
-files1 = Dir
-files2 = Dir
+# DECLARING FUNCTIONS
 
-# This block determines whether they match up when both are in seperate files
-
-	if newFold.count() > 1
-		for i in newFold do	
-			if i.basename.to_s.include?("96") == true
-				files1 = Dir.entries(i)
-			else 
-				files2 = Dir.entries(i)
-			end
-		end
-
-
-		for file96 in files1 do
+def comparer (files1, files2)
+for file96 in files1 do
 				found = false
-				if file96.include?(".sfk") == true
+				if file96.include?(".sfk") == true or file96 == "44" or file96 == "." or file96 == ".."
 				else	
 					for file44 in files2 do
 						file44.gsub!("-44", "")
+						file44.gsub!("_44","")
+						file96.gsub!("_96","")
 						if file44 == file96
 							found = true
 						else
@@ -36,10 +37,36 @@ files2 = Dir
 					end
 				end
 		end		
-			
-			
+
+end
+
+# END DECLARING FUNCTIONS
+
+# RUN CODE
+declareDir = 'Z:\packageTestArea\WILL_UIUC_Transfers'
+newFold = Pathname.new(declareDir).children.select { |c| c.directory? }
+files1 = Dir
+files2 = Dir
+
+# The software accounts for three different scenarios
+# 1. the files are located in two sub-directories
+# 2. One set of files is in a subdirectory and the other set on the top level
+# 3. Both sets of files are on the top level
+
+# This block is for when both sets are in subdirectories.
+	if newFold.count() > 1
+		for i in newFold do	
+			if i.basename.to_s.include?("96") == true
+				files1 = Dir.entries(i)
+			else 
+				files2 = Dir.entries(i)
+			end
+		end
+
+		comparer(files1, files2)
+		
 				
- 
+ # This block is accessed when both sets are on the top level of the directory
 	
 	elsif newFold.count() == 0
 		files1 = []
@@ -52,26 +79,8 @@ files2 = Dir
 				files1.push(item)
 			end
 		end
-
-		for file96 in files1 do
-				if file96.include?(".sfk") == true or file96 == "." or file96 == ".."
-				else	
-						found = false
-					for file44 in files2 do
-						file44.gsub!("_44","")
-						file96.gsub!("_96","")
-						if file44 == file96
-							found = true	
-						else
-						end	 
-					end
-					if found == false
-						puts file96
-						puts "Is not available in 44"	 
-					end
-				end
-		end
-
+		comparer(files1, files2)
+# This block is accessed when the 44 KhZ files are in a subdirectory.
 	else 
 	files1 = Dir.entries(declareDir)
 	files2 = Dir.entries(newFold[0])
@@ -81,27 +90,7 @@ files2 = Dir
 				if file96.include?(".sfk") == true or file96 == "44" or file96 == "." or file96 == ".."
 
 				else	
-					for file44 in files2 do
-						file44.gsub!("-44","")
-						if file44 == file96
-							found = true	
-						else
-
-						end	 
-					end
-					if found == false
-						puts file96
-						puts "Is not available in 44"
- 
-					end
-				end
-		end	
-			 
+					comparer(files1, files2)
 
 	end
-	
-	
-
-
-
-
+# END RUN CODE

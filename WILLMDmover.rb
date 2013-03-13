@@ -1,3 +1,13 @@
+#### WILL Metadata MOVER ######
+# Written by Gary R. Maixner III
+
+# Code written to compare an arbitrarilly assigned ID to an entity's name
+# then move the metadata to the entity.
+
+# Note from: 3:22 PM Wednesday, March 06, 2013
+# This code will change radically very shortly, it was originally written simply to match by name
+# and not by ID. This will be changed shortly.
+
 require 'pathname'
 require 'FileUtils'
 
