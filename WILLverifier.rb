@@ -43,7 +43,7 @@ end
 # END DECLARING FUNCTIONS
 
 # RUN CODE
-puts("Type the full apth to the directory that you want analyzed"
+puts "Type the full apth to the directory that you want analyzed"
 declareDir = gets
 declareDir = declareDir.chomp
 newFold = Pathname.new(declareDir).children.select { |c| c.directory? }
