@@ -43,7 +43,9 @@ end
 # END DECLARING FUNCTIONS
 
 # RUN CODE
-declareDir = 'Z:\packageTestArea\WILL_UIUC_Transfers'
+puts("Type the full apth to the directory that you want analyzed"
+declareDir = gets
+declareDir = declareDir.chomp
 newFold = Pathname.new(declareDir).children.select { |c| c.directory? }
 files1 = Dir
 files2 = Dir
