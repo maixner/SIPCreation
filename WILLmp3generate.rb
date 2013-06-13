@@ -12,7 +12,9 @@ require 'FileUtils'
 # This is where you point FFmpeg
 ffmpeg_loc = 'C:\Users\maixner2\Documents\GitHub\SIPCreation\ffmpeg\bin\ffmpeg.exe'
 
-declareDir = 'Z:\packageTestArea\G-test'
+puts "Type the full path to the directory where the packages are located"
+declareDir = gets
+declareDir = declareDir.chomp
 
 allDir = Dir.entries(declareDir)
 
