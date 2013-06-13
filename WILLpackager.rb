@@ -65,9 +65,14 @@ def Repack(files1, files2, locale96, locale44,newLocation)
 				end						
 		end
 end 
+puts "Type the full path to the directory that you want to package"
+declareDir = gets
+declareDir = declareDir.chomp
 
-declareDir = 'Z:\packageTestArea\Univ-Ill_1_2011'
-newLocation = "Z:\\packageTestArea\\G-test\\"
+puts "Type the full path to the directory where you would like the packages to be placed"
+newLocation = gets
+newLocation = newLocation.chomp
+
 
 newFold = Pathname.new(declareDir).children.select { |c| c.directory? }
 files1 = []
