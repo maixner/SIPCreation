@@ -11,8 +11,13 @@
 require 'pathname'
 require 'FileUtils'
 
-startDir = 'Z:\packageTestArea\output_G-unit'
-endDir = 'Z:\packageTestArea\1306005'
+puts "Type the full path to the directory that the metadata is located"
+startDir = gets
+startDir = startDir.chomp
+
+puts "Type the full path to the directory that the audio files are located"
+endDir = gets
+endDir = endDir.chomp
 
 mdFiles = Dir.entries(startDir)
 destDirs = Dir.entries(endDir)
