@@ -24,6 +24,7 @@ for folder in allDir
 				if item.to_s.include?("44")
 					convItem = newlocation + "\\" +  item
 					toMP3 = convItem.gsub(".wav", ".mp3")
+# This is where you point the software to FFmpeg.
 					sendOut = 'C:\Users\maixner2\Documents\GitHub\SIPCreation\ffmpeg\bin\ffmpeg.exe -i ' + convItem + " " + toMP3
 					system sendOut
 				end	
